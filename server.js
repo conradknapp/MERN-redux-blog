@@ -31,6 +31,6 @@ app.use("/posts", postRoutes);
 
 const port = process.env.API_PORT || 3030;
 
-app.listen(port, function() {
-  console.log(`api running on port ${port}`);
+app.listen(port, () => {
+  console.log(`Listening at ${port}`);
 });

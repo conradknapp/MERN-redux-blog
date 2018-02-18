@@ -8,6 +8,7 @@ import ReduxPromise from "redux-promise";
 
 import PostsIndex from "./components/PostsIndex";
 import NewPost from "./components/NewPost";
+import Post from "./components/Post";
 import rootReducer from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -15,8 +16,9 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const Root = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={PostsIndex} />
-      <Route exact path="/posts/new" component={NewPost} />
+      <Route path="/posts/new" component={NewPost} />
+      <Route path="/posts/:id" component={Post} />
+      <Route path="/" component={PostsIndex} />
     </Switch>
   </Router>
 );

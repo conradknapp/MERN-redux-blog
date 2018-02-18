@@ -55,10 +55,10 @@ exports.posts_get_post = (req, res, next) => {
   const id = req.params.post_id;
   Post.findById(id)
     .exec()
-    .then(doc => {
-      if (doc) {
+    .then(post => {
+      if (post) {
         res.status(200).json({
-          post: doc
+          post
         });
       } else {
         res.status(404).json({ message: "No entry for given id" });
