@@ -28,15 +28,30 @@ class NewPost extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="container-fluid">
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Title" name="title" component={this.renderInput} />
+      <div className="py-4 bg-light rounded container container-fluid border border-light">
+        <h1 className="display-3">Add New Post</h1>
+        <form
+          className="form-group"
+          onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
           <Field
+            className="form-control"
+            label="Title"
+            name="title"
+            component={this.renderInput}
+          />
+          <Field
+            className="form-control"
             label="Categories"
             name="categories"
             component={this.renderInput}
           />
-          <Field label="Content" name="content" component={this.renderInput} />
+          <Field
+            className="form-control"
+            label="Content"
+            name="content"
+            component={this.renderInput}
+          />
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

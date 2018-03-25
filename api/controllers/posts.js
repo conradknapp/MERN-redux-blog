@@ -11,7 +11,8 @@ exports.posts_get_all = (req, res, next) => {
             title: doc.title,
             categories: doc.categories,
             content: doc.content,
-            id: doc._id
+            id: doc._id,
+            date: doc.date
           };
         })
       };

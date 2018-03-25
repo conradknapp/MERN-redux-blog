@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { onFetchPosts } from "../actions/index";
-import map from "lodash.map";
 import { Link } from "react-router-dom";
+
+import map from "lodash.map";
+import { convertToDate, formatCategories } from "../helpers/utils";
 
 class PostsIndex extends Component {
   componentDidMount() {
@@ -10,10 +12,21 @@ class PostsIndex extends Component {
   }
 
   renderPosts() {
-    return map(this.props.posts.posts, ({ id, title }) => {
+    return map(this.props.posts.posts, ({ id, title, categories, date }) => {
       return (
-        <li className="list-group-item" key={id}>
-          <Link to={`/posts/${id}`}>{title}</Link>
+        <li
+          className="lead list-group-item list-group-item-action list-group-item-light d-flex justify-content-between align-items-center"
+          key={id}
+        >
+          <span>
+            <Link to={`/posts/${id}`}>{title}</Link>
+            <span className="text-muted mx-4 font-italic">
+              {formatCategories(categories)}
+            </span>
+          </span>
+          <span className="badge badge-primary badge-pill">
+            {convertToDate(date)}
+          </span>
         </li>
       );
     });
@@ -22,15 +35,17 @@ class PostsIndex extends Component {
   render() {
     console.log(this.props.posts);
     return (
-      <section className="container-fluid">
-        <div className="text-right">
-          <Link to="/posts/new" className="btn btn-primary">
-            Add Post
-          </Link>
-        </div>
-        <h1 className="text-center">Posts</h1>
-        <ul className="list-group list-unstyled">{this.renderPosts()}</ul>
-      </section>
+      <div className="bg-light">
+        <section className="container container-fluid">
+          <div className="text-right">
+            <Link to="/posts/new" className="btn btn-primary">
+              Add Post
+            </Link>
+          </div>
+          <h1 className="display-3 text-center ">Posts</h1>
+          <ul className="list-group list-unstyled">{this.renderPosts()}</ul>
+        </section>
+      </div>
     );
   }
 }
